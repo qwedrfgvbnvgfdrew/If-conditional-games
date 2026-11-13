@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>If-Then Gym: English conditionals games</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f1;--panel:#fff;--ink:#16243b;--mute:#5a6b7d;--line:#cfdbd6;--teal:#0e7c7b;--sun:#f4b942;--ok:#1d8a4e;--bad:#c8402a;--okbg:#dcf3e5;--badbg:#fbe1db;--on-teal:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101c2a;--panel:#182a3d;--ink:#e8f0f4;--mute:#9db0c0;--line:#2c4258;--teal:#3cc0bd;--sun:#f4b942;--ok:#5fd18e;--bad:#ff8f78;--okbg:#18412d;--badbg:#4a2620;--on-teal:#0b1a28;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101c2a;--panel:#182a3d;--ink:#e8f0f4;--mute:#9db0c0;--line:#2c4258;--teal:#3cc0bd;--sun:#f4b942;--ok:#5fd18e;--bad:#ff8f78;--okbg:#18412d;--badbg:#4a2620;--on-teal:#0b1a28;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.55 "Atkinson Hyperlegible",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+main{max-width:860px;margin:0 auto;padding:20px 18px 60px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-weight:700}
+.rank{background:var(--panel);border:2px solid var(--line);border-radius:999px;padding:6px 16px}
+.hero{margin:34px 0 30px}
+.hero h1{font-size:clamp(2.2rem,7vw,4rem);font-weight:800;letter-spacing:-.02em}
+.cond{background:var(--teal);color:var(--on-teal);padding:0 .25em;border-radius:.2em}
+.res{background:var(--sun);color:#16243b;padding:0 .25em;border-radius:.2em}
+.hero p{max-width:52ch;color:var(--mute);margin:14px 0 0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:20px}
+.card h2{font-size:1.4rem}
+.card p{margin:6px 0 14px;color:var(--mute)}
+.lv{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--teal);background:transparent;border-radius:12px;padding:8px 12px;font-weight:700;text-align:left}
+.chip small{display:block;font-weight:400;color:var(--mute)}
+.chip:hover:not(:disabled){background:var(--teal);color:var(--on-teal)}
+.chip:hover:not(:disabled) small{color:inherit}
+.chip:disabled{border-color:var(--line);color:var(--mute);cursor:not-allowed}
+.chip.done{border-color:var(--ok)}
+.bar{height:10px;background:var(--line);border-radius:9px;overflow:hidden;margin:14px 0}
+.bar i{display:block;height:100%;background:var(--teal);transition:width .3s}
+.tip{background:var(--panel);border-left:6px solid var(--sun);padding:10px 14px;border-radius:8px;color:var(--mute)}
+.q{font:700 clamp(1.4rem,4.5vw,2rem)/1.3 "Bricolage Grotesque",system-ui,sans-serif;margin:26px 0 18px}
+.opts{display:grid;gap:10px}
+.opt{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:14px 16px;text-align:left;font-weight:700}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt.ok{background:var(--okbg);border-color:var(--ok)}
+.opt.no{background:var(--badbg);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.tray{min-height:58px;display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-radius:14px;margin-bottom:12px}
+.tray.ans{border:2px dashed var(--teal)}
+.tile{background:var(--panel);border:2px solid var(--line);border-radius:10px;padding:8px 12px;font-weight:700}
+.tile:hover{border-color:var(--teal)}
+.fb{margin:18px 0 0;padding:12px 16px;border-radius:12px;font-weight:700}
+.fb.ok{background:var(--okbg);color:var(--ok)}
+.fb.no{background:var(--badbg);color:var(--bad)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{background:var(--teal);color:var(--on-teal);border:0;border-radius:12px;padding:12px 22px;font-weight:700}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.big{font:800 4rem/1 "Bricolage Grotesque",system-ui,sans-serif}
+.sec{font-size:1.7rem;margin:40px 0 6px}.secp{color:var(--mute);margin:0 0 16px}
+.frame{font:700 1.3rem/1.4 "Bricolage Grotesque",system-ui,sans-serif;background:var(--panel);border:2px dashed var(--teal);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.timer{font:800 3rem/1 "Bricolage Grotesque",system-ui,sans-serif;margin:8px 0}
+.model{margin-top:14px;padding:12px 16px;border-radius:12px;background:var(--okbg);color:var(--ok);font-weight:700}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const LV=["Level 1","Level 2","Level 3"];
+const SUB=["Zero and first","Second","All types, mixed"];
+const TIPS=["Zero: if + present, present (facts). First: if + present, will + verb (real future).","Second: if + past simple, would + verb (imaginary now). Use were with every subject.","Third: if + past perfect, would have + past participle (imaginary past)."];
+const TY=["Zero conditional: a general fact.","First conditional: a real future possibility.","Second conditional: an imaginary present or future.","Third conditional: an imaginary past."];
+const GAMES={
+sort:{n:"Type sorter",d:"Read the sentence and name its conditional type.",t:[[0,1],[1,2],[0,1,2,3]],
+ q:[[["If you heat ice, it melts.",0],["If it rains tomorrow, we will stay home.",1],["If you mix red and blue, you get purple.",0],["If she studies, she will pass the exam.",1],["If I am late, I will call you.",1]],
+ [["If I won the lottery, I would buy a house.",2],["If he comes, I will tell him.",1],["If I were you, I would apologize.",2],["If it snows tonight, the school will close.",1],["If we had more time, we would visit the museum.",2]],
+ [["If I had known, I would have helped you.",3],["If water reaches 100°C, it boils.",0],["If she had left earlier, she wouldn’t have missed the train.",3],["If you call me, I will answer.",1],["If I lived by the sea, I would swim every day.",2]]]},
+gap:{n:"Gap fill",d:"Choose the verb form that completes the sentence.",
+ q:[[["If you cool water to 0°C, it ___.",["freezes","will freeze","froze"],0],["If it rains, we ___ at home.",["stay","will stay","would stay"],1],["If she ___ hungry, she eats an apple.",["will be","is","were"],1],["I will call you if I ___ time.",["will have","would have","have"],2],["If you don’t hurry, you ___ the bus.",["miss","will miss","would miss"],1]],
+ [["If I ___ rich, I would travel the world.",["am","were","will be"],1],["She would help you if she ___ the answer.",["knew","knows","will know"],0],["If they ___ here, they would love it.",["are","will be","were"],2],["If I had a car, I ___ to work.",["will drive","would drive","drive"],1],["We ___ a dog if our flat were bigger.",["will get","would get","got"],1]],
+ [["If I had studied, I ___ the test.",["would pass","would have passed","will pass"],1],["If she ___ the map, she wouldn’t have got lost.",["had read","read","would read"],0],["If we ___ earlier, we would have caught the train.",["left","had left","leave"],1],["He would be here now if he ___ the bus.",["hadn’t missed","didn’t miss","doesn’t miss"],0],["If you ___ me, I would have helped.",["asked","would ask","had asked"],2]]]},
+build:{n:"Sentence builder",d:"Tap the words in the right order. Capital letter starts the sentence.",
+ q:[[["If","it","rains,","we","will","stay","home."],["If","you","heat","ice,","it","melts."],["I","will","call","you","if","I","am","late."],["If","she","studies,","she","will","pass."],["We","will","go","out","if","it","stops","raining."]],
+ [["If","I","were","rich,","I","would","buy","a","boat."],["She","would","help","if","she","knew","how."],["If","we","had","more","time,","we","would","stay."],["I","would","call","him","if","I","had","his","number."],["If","he","studied","harder,","he","would","pass."]],
+ [["If","I","had","known,","I","would","have","helped."],["She","would","have","come","if","she","had","been","invited."],["If","they","had","left","earlier,","they","would","have","arrived","on","time."],["We","wouldn’t","have","got","wet","if","we","had","taken","an","umbrella."],["If","you","had","asked,","I","would","have","said","yes."]]]},
+hunt:{n:"Error hunt",d:"Three sentences. One has a mistake. Find it.",
+ q:[[[["If it rains, we will stay home.","If you heat ice, it will melted.","If I see him, I will tell him."],1],[["If he will come, we will start.","If she calls, I will answer.","If you press this, it turns on."],0],[["If it is sunny, we will go out.","If water freezes, it becomes ice.","If I am late, I will to call you."],2],[["If I have time, I will help.","If he is hungry, he will eats.","If it rains, I take an umbrella."],1],[["If she don’t come, we will leave.","If you don’t hurry, you will be late.","If it is cold, I wear a coat."],0]],
+ [[["If I would have time, I would help.","If I had time, I would help.","If I were you, I would go."],0],[["If I were rich, I would travel.","If we had a car, we would drive.","If it will rain, we would stay."],2],[["If he studied, he would pass.","If she had wings, she will fly.","If I were tall, I would play basketball."],1],[["If I were you, I would wait.","If she knew, she would say.","If we had time, we will go."],2],[["If it were cheaper, I would buy it.","If I would know, I would tell you.","If he lived nearer, he would come."],1]],
+ [[["If I had known, I would helped you.","If she had left, she would have arrived.","If we had run, we would have won."],0],[["If you had called, I would have come.","If he had studied, he would have pass the test.","If they had asked, we would have said yes."],1],[["If I had seen it, I would have told you.","If we had known, we would have gone.","If she had been there, she would has helped."],2],[["If it hadn’t rained, we would have played.","If I would have known, I would have come.","If you had asked, I would have helped."],1],[["If she had gone, she would have buyed it.","If they had waited, they would have seen him.","If I had known, I would have called."],0]]]}
+};
+const SPK={
+facts:{n:"Facts and habits",d:"Zero conditional: say what is always true or what you usually do.",tip:"Zero: if + present, present. Example: If I’m tired, I go to bed early.",p:[
+["What happens if you don’t sleep enough?","If I don’t sleep enough, I …","If I don’t sleep enough, I feel tired all day."],
+["What do you do if you feel stressed?","If I feel stressed, I …","If I feel stressed, I go for a walk."],
+["What happens if you mix water and oil?","If you mix water and oil, …","If you mix water and oil, they don’t combine."],
+["What do you do if you can’t fall asleep?","If I can’t fall asleep, I …","If I can’t fall asleep, I read a book."],
+["What happens to ice if you heat it?","If you heat ice, …","If you heat ice, it melts."]]},
+plans:{n:"Plans and promises",d:"First conditional: talk about real future possibilities.",tip:"First: if + present, will + verb. Example: If it rains, I will stay home.",p:[
+["It might rain tomorrow. What will you do?","If it rains tomorrow, I will …","If it rains tomorrow, I will watch a film at home."],
+["Make a promise to your teacher.","If I have time tonight, I will …","If I have time tonight, I will review all the new words."],
+["What will you do if you pass your next exam?","If I pass my exam, I will …","If I pass my exam, I will celebrate with my friends."],
+["Your friend feels sad. Offer to help.","If you feel sad, I will …","If you feel sad, I will call you and listen."],
+["Plan your weekend. Include the weather.","If the weather is nice on Saturday, I will …","If the weather is nice on Saturday, I will go to the park."]]},
+dreams:{n:"Dreams and wishes",d:"Second conditional: imagine unreal situations.",tip:"Second: if + past simple, would + verb. Example: If I were rich, I would travel.",p:[
+["What would you do if you won a million dollars?","If I won a million dollars, I would …","If I won a million dollars, I would buy a house for my family."],
+["Where would you live if you could live anywhere?","If I could live anywhere, I would …","If I could live anywhere, I would live by the sea."],
+["What would you do if you were invisible for a day?","If I were invisible, I would …","If I were invisible, I would visit my favourite football stadium."],
+["What would you say if you met your hero?","If I met my hero, I would say …","If I met my hero, I would ask for advice."],
+["What would you change if you were president?","If I were president, I would …","If I were president, I would make public transport free."]]},
+regrets:{n:"Regrets and what-ifs",d:"Third conditional: look back at the past and change it.",tip:"Third: if + past perfect, would have + past participle. Example: If I had left earlier, I would have caught the bus.",p:[
+["Think of a mistake you made. What would you do differently?","If I had …, I would have …","If I had checked the time, I would have arrived on schedule."],
+["Yesterday wasn’t perfect. What would have made it better?","If I had …, yesterday would have been …","If I had started earlier, yesterday would have been less stressful."],
+["Talk about a time you were late.","If I had left earlier, I would have …","If I had left earlier, I would have caught the train."],
+["What would have happened if you had never studied English?","If I had never studied English, I would have …","If I had never studied English, I would have missed many opportunities."],
+["Think of a trip or party. What would you do differently?","If I had gone …, I would have …","If I had taken more photos, I would have remembered it better."]]},
+chain:{n:"Chain story",d:"Mixed: keep a story going by using each result as the next if.",tip:"Say at least three connected sentences. The result of one sentence becomes the if-part of the next.",p:[
+["Keep the chain going. Say at least three sentences.","If I found a magic door, I would …","If I found a magic door, I would open it. If I opened it, I would see a garden. If I saw a garden, I would walk inside."],
+["Keep the chain going. Say at least three sentences.","If I woke up in another country tomorrow, I would …","If I woke up in Japan, I would find a café. If I found a café, I would order tea."],
+["Keep the chain going. Say at least three sentences.","If I could talk to animals, I would …","If I could talk to animals, I would ask my cat about her day. If she answered, I would laugh."],
+["Keep the chain going. Say at least three sentences.","If it rains all weekend, I will …","If it rains all weekend, I will cook. If I cook, I will invite a friend."],
+["Keep the chain going. Say at least three sentences.","If I had been born 100 years ago, I would have …","If I had been born 100 years ago, I would have lived without phones. If I had lived without phones, I would have written letters."]]}
+};
+let SP=null;
+function spk(k){SP={k,i:0,n:0,t:30,iv:null};spPlay()}
+function spPlay(){
+ clearInterval(SP.iv);SP.t=30;SP.iv=null;
+ const G=SPK[SP.k],p=G.p[SP.i];
+ app.innerHTML=`<div class="top"><button class="btn alt" id="back">Back</button><span>${G.n}</span></div>
+ <div class="bar"><i style="width:${SP.i/G.p.length*100}%"></i></div><div class="tip">${G.tip}</div>
+ <div class="q">${p[0]}</div><div class="frame">Start with: ${p[1]}</div>
+ <div class="timer" id="tm">30</div>
+ <div class="row"><button class="btn" id="go">Start 30 seconds and speak</button><button class="btn alt" id="ex">Show model answer</button></div>
+ <div id="mod"></div>
+ <div class="row"><button class="btn" id="yes">I said it with if (+10 XP)</button><button class="btn alt" id="skip">Skip</button></div>`;
+ document.getElementById("back").onclick=()=>{clearInterval(SP.iv);home()};
+ document.getElementById("go").onclick=()=>{clearInterval(SP.iv);SP.t=30;const tm=document.getElementById("tm");tm.textContent=30;
+  SP.iv=setInterval(()=>{SP.t--;tm.textContent=SP.t;if(SP.t<=0){clearInterval(SP.iv);tm.textContent="Time!"}},1000)};
+ document.getElementById("ex").onclick=()=>{document.getElementById("mod").innerHTML=`<div class="model">Model: ${p[2]}</div>`};
+ document.getElementById("yes").onclick=()=>{S.xp+=10;SP.n++;spNext()};
+ document.getElementById("skip").onclick=spNext;
+}
+function spNext(){
+ clearInterval(SP.iv);
+ if(SP.i<SPK[SP.k].p.length-1){SP.i++;spPlay();return}
+ const k="sp_"+SP.k;if(SP.n>(S.best[k]||0))S.best[k]=SP.n;save();
+ app.innerHTML=`<div class="top"><span>${SPK[SP.k].n}</span><span class="rank">${rank()} · ${S.xp} XP</span></div>
+ <section class="hero"><div class="big">${SP.n}/5</div><h2 style="margin-top:12px">${SP.n>=4?"Great speaking practice!":"Good start. Try again and speak more."}</h2>
+ <p>Tip: record yourself on your phone and listen for the if-part and the result-part.</p>
+ <div class="row"><button class="btn" id="again">Play again</button><button class="btn alt" id="hm">All games</button></div></section>`;
+ const k2=SP.k;document.getElementById("again").onclick=()=>spk(k2);document.getElementById("hm").onclick=home;
+}
+const RANKS=[[0,"Newcomer"],[80,"Apprentice"],[200,"Regular"],[350,"Expert"],[500,"Master"]];
+let S={xp:0,best:{}},P=null;
+try{const r=localStorage.getItem("ifthen-gym");if(r)S=JSON.parse(r)}catch(e){}
+function save(){try{localStorage.setItem("ifthen-gym",JSON.stringify(S))}catch(e){}}
+const app=document.getElementById("app");
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const rank=()=>RANKS.filter(r=>S.xp>=r[0]).pop()[1];
+const open=(g,l)=>l===0||(S.best[g+(l-1)]||0)>=4;
+function home(){
+ P=null;
+ let h=`<div class="top"><span>If-Then Gym</span><span class="rank">${rank()} · ${S.xp} XP</span></div>
+ <section class="hero"><h1><span class="cond">If you practise daily,</span> <span class="res">you will improve.</span></h1>
+ <p>Written games and speaking practice for English conditionals. Score 4 out of 5 to unlock the next written level.</p></section><div class="grid">`;
+ for(const g in GAMES){const G=GAMES[g];
+  h+=`<div class="card"><h2>${G.n}</h2><p>${G.d}</p><div class="lv">`;
+  for(let l=0;l<3;l++){const b=S.best[g+l];
+   h+=`<button class="chip ${b>=4?"done":""}" data-g="${g}" data-l="${l}" ${open(g,l)?"":"disabled"}>${LV[l]}<small>${open(g,l)?(b!=null?"Best "+b+"/5":SUB[l]):"Locked"}</small></button>`}
+  h+=`</div></div>`}
+ h+=`</div><h2 class="sec">Speaking games</h2><p class="secp">Say your answers out loud. Use a timer, then check yourself.</p><div class="grid">`;
+ for(const k in SPK){const b=S.best["sp_"+k];
+  h+=`<div class="card"><h2>${SPK[k].n}</h2><p>${SPK[k].d}</p><button class="chip ${b>=4?"done":""}" data-sp="${k}">Speak<small>${b!=null?"Best "+b+"/5":"5 prompts"}</small></button></div>`}
+ app.innerHTML=h+`</div>`;
+ app.querySelectorAll("[data-sp]").forEach(c=>c.onclick=()=>spk(c.dataset.sp));
+ app.querySelectorAll(".chip[data-g]").forEach(c=>c.onclick=()=>start(c.dataset.g,+c.dataset.l));
+}
+function start(g,l){P={g,l,i:0,score:0,items:sh(GAMES[g].q[l]),ans:false};play()}
+function play(){
+ const{g,l,i,items}=P,G=GAMES[g],it=items[i];P.ans=false;
+ let h=`<div class="top"><button class="btn alt" id="back">Back</button><span>${G.n} · ${LV[l]}</span></div>
+ <div class="bar"><i style="width:${i/items.length*100}%"></i></div><div class="tip">${TIPS[l]}</div>`;
+ if(g==="sort"){h+=`<div class="q">${it[0]}</div><div class="opts">`+G.t[l].map(t=>`<button class="opt" data-v="${t}">${["Zero","First","Second","Third"][t]} conditional</button>`).join("")+`</div>`}
+ if(g==="gap"){h+=`<div class="q">${it[0].replace("___","<span class='cond'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>")}</div><div class="opts">`+it[1].map((o,k)=>`<button class="opt" data-v="${k}">${o}</button>`).join("")+`</div>`}
+ if(g==="hunt"){h+=`<div class="q">Which sentence has a mistake?</div><div class="opts">`+it[0].map((o,k)=>`<button class="opt" data-v="${k}">${o}</button>`).join("")+`</div>`}
+ if(g==="build"){P.pool=sh(it.map((w,k)=>({w,k})));P.out=[];h+=`<div class="q">Build the sentence.</div><div class="tray ans" id="out"></div><div class="tray" id="pool"></div><div class="row"><button class="btn" id="chk">Check</button><button class="btn alt" id="rst">Reset</button></div>`}
+ h+=`<div id="fb"></div><div class="row" id="nx"></div>`;
+ app.innerHTML=h;
+ document.getElementById("back").onclick=home;
+ if(g==="build")tiles();
+ else app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.v));
+}
+function tiles(){
+ const o=document.getElementById("out"),p=document.getElementById("pool");
+ const mk=(arr,from)=>arr.map(t=>`<button class="tile" data-k="${t.k}" data-f="${from}">${t.w}</button>`).join("");
+ o.innerHTML=mk(P.out,"o");p.innerHTML=mk(P.pool,"p");
+ app.querySelectorAll(".tile").forEach(b=>b.onclick=()=>{if(P.ans)return;const k=+b.dataset.k;
+  if(b.dataset.f==="p"){const t=P.pool.find(x=>x.k===k);P.pool=P.pool.filter(x=>x!==t);P.out.push(t)}
+  else{const t=P.out.find(x=>x.k===k);P.out=P.out.filter(x=>x!==t);P.pool.push(t)}tiles()});
+ document.getElementById("chk").onclick=()=>{if(P.ans||P.out.length===0)return;
+  const target=P.items[P.i].join(" "),got=P.out.map(t=>t.w).join(" ");finish(got===target,"The correct sentence: "+target)};
+ document.getElementById("rst").onclick=()=>{if(P.ans)return;P.pool=sh(P.pool.concat(P.out));P.out=[];tiles()};
+}
+function pick(v){
+ if(P.ans)return;const{g,l,i,items}=P,it=items[i];let right,note="";
+ if(g==="sort"){right=v===it[1];note=TY[it[1]]}
+ if(g==="gap"){right=v===it[2];note="Correct: "+it[0].replace("___",it[1][it[2]])}
+ if(g==="hunt"){right=v===it[1];note="The mistake is in: "+it[0][it[1]]}
+ const ans=g==="sort"?it[1]:g==="gap"?it[2]:it[1];
+ app.querySelectorAll(".opt").forEach(b=>{b.disabled=true;if(+b.dataset.v===ans)b.classList.add("ok");else if(+b.dataset.v===v)b.classList.add("no")});
+ finish(right,note);
+}
+function finish(right,note){
+ P.ans=true;if(right){P.score++;S.xp+=10}
+ document.getElementById("fb").innerHTML=`<div class="fb ${right?"ok":"no"}" role="status">${right?"Correct! +10 XP":"Not quite."} ${right&&P.g!=="build"?"":note}</div>`;
+ const last=P.i===P.items.length-1;
+ document.getElementById("nx").innerHTML=`<button class="btn" id="next">${last?"See result":"Next"}</button>`;
+ const n=document.getElementById("next");n.focus();n.onclick=()=>{if(last)end();else{P.i++;play()}};
+}
+function end(){
+ const{g,l,score}=P,pass=score>=4,prev=S.best[g+l]||0;
+ if(score>prev)S.best[g+l]=score;if(pass&&prev<4)S.xp+=20;save();
+ const nxt=l<2&&pass;
+ app.innerHTML=`<div class="top"><span>${GAMES[g].n} · ${LV[l]}</span><span class="rank">${rank()} · ${S.xp} XP</span></div>
+ <section class="hero"><div class="big">${score}/5</div><h2 style="margin-top:12px">${pass?(prev<4?"Passed! Bonus +20 XP.":"Passed."):"Almost. You need 4 out of 5."}</h2>
+ <p>${pass?(l<2?"The next level is unlocked.":"You finished every level of this game."):"Read the tip at the top and try again."}</p>
+ <div class="row"><button class="btn" id="again">Play again</button>${nxt?`<button class="btn alt" id="nl">Next level</button>`:""}<button class="btn alt" id="hm">All games</button></div></section>`;
+ document.getElementById("again").onclick=()=>start(g,l);
+ if(nxt)document.getElementById("nl").onclick=()=>start(g,l+1);
+ document.getElementById("hm").onclick=home;
+}
+home();
+</script>
+</body>
+</html>
